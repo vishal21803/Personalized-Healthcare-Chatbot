@@ -10,3 +10,4 @@ pyttsx3
 scikit-learn
 SpeechRecognition
 xmltodict
+gunicorn

@@ -10,4 +10,5 @@ scikit-learn
 xmltodict
 beautifulsoup4
 nltk
+SpeechRecognition
 gunicorn

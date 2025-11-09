@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HTML to Structured Format</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    pre {
+      background-color: #f4f4f4;
+      padding: 10px;
+      border: 1px solid #ddd;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Original HTML:</h1>
+  <div id="original-html">
+    <h1>Title: <span class="qt0">Diabetes</span>
+        Summary: <span class="qt0">Diabetes</span> is a disease in which your blood glucose, or blood sugar, levels are too high.</h1>
+        <h2>Key Points:</h2>
+        <ul>
+        <li><strong>Span:</strong> With type 1 <span class="qt0">diabetes</span>, your body does not make insulin.</li>
+        <li><strong>Diabetes:</strong> You can also have prediabetes.</li iss html k liye code likho taaki ye ek well format structure m aajaye
+        <li><strong>Glucose:</strong> Glucose comes from the foods you eat.</li>
+        </ul>
+        <h2>Detailed Information:</h2>
+        <h3>Span</h3>
+        <ul>
+        <li>With type 1 <span class="qt0">diabetes</span>, your body does not make insulin.</li>
+        <li>With type 2 <span class="qt0">diabetes</span>, the more common type, your body does not make or use insulin well.</li>
+        <li>This means that your blood sugar is higher than normal but not high enough to be called <span class="qt0">diabetes</span>.</li>
+        <li>Having prediabetes puts you at a higher risk of getting type 2 <span class="qt0">diabetes</span>.Over time, having too much glucose in your blood can cause serious problems.</li>
+        <li><span class="qt0">Diabetes</span> can also cause heart disease, stroke and even the need to remove a limb.</li>
+        <li>Pregnant women can also get <span class="qt0">diabetes</span>, called gestational <span class="qt0">diabetes</span>.Blood tests can show if you have <span class="qt0">diabetes</span>.</li>
+        <li>One type of test, the A1C, can also check on how you are managing your <span class="qt0">diabetes</span>.</li>
+        <li>Exercise, weight control and sticking to your meal plan can help control your <span class="qt0">diabetes</span>.</li>
+        <li>NIH: National Institute of <span class="qt0">Diabetes</span> and Digestive and Kidney Diseases</li>
+        </ul>
+        <h3>Diabetes</h3>
+        <ul>
+        <li>You can also have prediabetes.</li>
+        </ul>
+        <h3>Glucose</h3>
+        <ul>
+        <li>Glucose comes from the foods you eat.</li>
+        <li>Insulin is a hormone that helps the glucose get into your cells to give them energy.</li>
+        <li>Without enough insulin, the glucose stays in your blood.</li>
+        <li>You should also monitor your blood glucose level and take medicine if prescribed.</li>
+        </ul>
+  </div>
+
+  <h1>Structured Output:</h1>
+  <pre id="structured-output"></pre>
+
+  <script>
+    // Function to convert HTML into structured text format
+    function convertHTMLToStructuredFormat(htmlElement) {
+      let structuredText = '';
+      
+      // Function to extract text from a node
+      function extractText(node) {
+        if (node.nodeType === Node.TEXT_NODE) {
+          return node.textContent.trim();
+        }
+        if (node.nodeType === Node.ELEMENT_NODE) {
+          let tagName = node.tagName.toLowerCase();
+          let text = '';
+
+          if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3') {
+            text += '\n' + node.textContent.trim().toUpperCase() + '\n';
+          } else if (tagName === 'ul') {
+            text += '\n';
+            node.querySelectorAll('li').forEach(li => {
+              text += ' - ' + li.textContent.trim() + '\n';
+            });
+          } else {
+            text += node.textContent.trim();
+          }
+
+          return text;
+        }
+        return '';
+      }
+
+      // Traverse through all child nodes
+      htmlElement.childNodes.forEach(node => {
+        structuredText += extractText(node) + '\n';
+      });
+
+      return structuredText.trim();
+    }
+
+    // Get the HTML element containing the content
+    const htmlContent = document.getElementById('original-html');
+
+    // Convert to structured format
+    const structuredOutput = convertHTMLToStructuredFormat(htmlContent);
+
+    // Display the structured output
+    document.getElementById('structured-output').textContent = structuredOutput;
+  </script>
+
+</body>
+</html>

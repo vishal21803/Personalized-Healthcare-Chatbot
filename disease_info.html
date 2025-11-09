@@ -1,0 +1,121 @@
+
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Health Information Chatbot</title>
+            <style>
+                 body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            margin: 0;
+            padding: 20px;
+        }
+        .chat-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .chat-header {
+            background-color: #075e54;
+            color: white;
+            padding: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            text-align: center;
+        }
+        .chat-body {
+            padding: 20px;
+        }
+        .message {
+            background-color: #FFF3E0;  /* हल्का नारंगी पृष्ठभूमि */
+            padding: 15px 20px;
+            border-radius: 18px;
+            margin-bottom: 20px;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            line-height: 1.6;
+        }
+        .message h2 {
+            color: #075e54;
+            margin-top: 0;
+        }
+                ul {
+                    padding-left: 20px;
+                    margin-bottom: 15px;
+                }
+                li {
+                    margin-bottom: 8px;
+                }
+                pre {
+                    background-color: #f4f4f4;
+                    padding: 15px;
+                    border-radius: 8px;
+                    border: 1px solid #ddd;
+                    white-space: pre-wrap;
+                    font-size: 14px;
+                    margin-top: 20px;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="chat-container">
+                <div class="chat-header">
+                    Health Information Chatbot
+                </div>
+                <div class="chat-body">
+                    <div class="message">
+                        <div id="original-html">Title: <span class="qt0">Diabetes</span>
+Summary: <p><span class="qt0">Diabetes</span> is a disease in which your blood glucose, or blood sugar, levels are too high.  Glucose comes from the foods you eat. Insulin is a hormone that helps the glucose get into your cells to give them energy.  With type 1 <span class="qt0">diabetes</span>, your body does not make insulin.  With type 2 <span class="qt0">diabetes</span>, the more common type, your body does not make or use insulin well. Without enough insulin, the glucose stays in your blood. You can also have prediabetes.  This means that your blood sugar is higher than normal but not high enough to be called <span class="qt0">diabetes</span>.  Having prediabetes puts you at a higher risk of getting type 2 <span class="qt0">diabetes</span>.</p><p>Over time, having too much glucose in your blood can cause serious problems.    It can damage your eyes, kidneys, and nerves. <span class="qt0">Diabetes</span> can also cause heart disease, stroke and even the need to remove a limb. Pregnant women can also get <span class="qt0">diabetes</span>, called gestational <span class="qt0">diabetes</span>.</p><p>Blood tests can show if you have <span class="qt0">diabetes</span>. One type of test, the A1C, can also check on how you are managing your <span class="qt0">diabetes</span>. Exercise, weight control and sticking to your meal plan can help control your <span class="qt0">diabetes</span>. You should also monitor your blood glucose level and take medicine if prescribed. 
+</p><p>NIH: National Institute of <span class="qt0">Diabetes</span> and Digestive and Kidney Diseases</p></div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                // Function to convert HTML into structured text format
+                function convertHTMLToStructuredFormat(htmlElement) {
+                    let structuredText = '';
+                    
+                    function extractText(node) {
+                        if (node.nodeType === Node.TEXT_NODE) {
+                            return node.textContent.trim();
+                        }
+                        if (node.nodeType === Node.ELEMENT_NODE) {
+                            let tagName = node.tagName.toLowerCase();
+                            let text = '';
+
+                            if (tagName === 'h1' || tagName === 'h2' || tagName === 'h3') {
+                                text += '\n' + node.textContent.trim().toUpperCase() + '\n';
+                            } else if (tagName === 'ul') {
+                                text += '\n';
+                                node.querySelectorAll('li').forEach(li => {
+                                    text += ' - ' + li.textContent.trim() + '\n';
+                                });
+                            } else {
+                                text += node.textContent.trim();
+                            }
+
+                            return text;
+                        }
+                        return '';
+                    }
+
+                    htmlElement.childNodes.forEach(node => {
+                        structuredText += extractText(node) + '\n';
+                    });
+
+                    return structuredText.trim();
+                }
+
+                // Get the HTML content and convert it
+                const originalHtml = document.getElementById('original-html').innerHTML;
+                const structuredOutput = convertHTMLToStructuredFormat(document.getElementById('original-html'));
+                document.getElementById('structured-output').textContent = structuredOutput;
+            </script>
+        </body>
+        </html>
+        

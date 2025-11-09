@@ -1,13 +1,13 @@
 aiohttp
-bs4
 python-dotenv
 flask
 flask-cors
 gTTS
-httpx
 pandas
+numpy
 pyttsx3
 scikit-learn
-SpeechRecognition
 xmltodict
+beautifulsoup4
+nltk
 gunicorn

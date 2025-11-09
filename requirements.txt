@@ -1,8 +1,10 @@
-aiohttp
-python-dotenv
-flask
+flask[async]
 flask-cors
+aiohttp
+gunicorn
+SpeechRecognition
 gTTS
+python-dotenv
 pandas
 numpy
 pyttsx3
@@ -10,5 +12,3 @@ scikit-learn
 xmltodict
 beautifulsoup4
 nltk
-SpeechRecognition
-gunicorn

@@ -1,0 +1,12 @@
+aiohttp
+bs4
+python-dotenv
+flask
+flask-cors
+gTTS
+httpx
+pandas
+pyttsx3
+scikit-learn
+SpeechRecognition
+xmltodict
